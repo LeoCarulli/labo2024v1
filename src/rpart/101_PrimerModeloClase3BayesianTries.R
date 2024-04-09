@@ -22,10 +22,10 @@ modelo <- rpart(
         formula = "clase_ternaria ~ .",
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
-        cp = -0.990134449765289, # esto significa no limitar la complejidad de los splits
-        minsplit = 2002, # minima cantidad de registros para que se haga el split
-        minbucket = 998, # tamaño minimo de una hoja
-        maxdepth = 17
+        cp = -0.872395867, # esto significa no limitar la complejidad de los splits
+        minsplit = 1171, # minima cantidad de registros para que se haga el split
+        minbucket = 498, # tamaño minimo de una hoja
+        maxdepth = 20
 ) # profundidad maxima del arbol
 
 
@@ -55,12 +55,12 @@ dapply[, prob_baja2 := prediccion[, "BAJA+2"]]
 dapply[, Predicted := as.numeric(prob_baja2 > 1 / 40)]
 
 # genero el archivo para Kaggle
-# primero creo la carpeta donde va el experimento
+# primero creo la carpeta donde va el experimentogi 
 dir.create("./exp/")
 dir.create("./exp/KA2001")
 
 # solo los campos para Kaggle
 fwrite(dapply[, list(numero_de_cliente, Predicted)],
-        file = "./exp/KA2001/K101_001Clase3.csv",
+        file = "./exp/KA2001/K101_004Bayesian.csv",
         sep = ","
 )
