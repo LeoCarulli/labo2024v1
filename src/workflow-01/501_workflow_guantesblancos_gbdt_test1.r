@@ -279,7 +279,6 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     pos_bagging_fraction = c( 0.1, 0.9), # 0.0 < pos_bagging_fraction <= 1.0
     neg_bagging_fraction = c( 0.1, 0.9) # 0.0 < neg_bagging_fraction <= 1.0
   )
-fgdrv
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
   param_local$bo_iteraciones <- 30 # iteraciones de la Optimizacion Bayesiana
