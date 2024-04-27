@@ -268,13 +268,10 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     neg_bagging_fraction = 0.27, # 0.0 < neg_bagging_fraction <= 1.0
     scale_pos_weight = 0.44, # scale_pos_weight > 0.0
     num_leaves = 237,
-
-    is_unbalance = FALSE, #
-    extra_trees = FALSE,
-
     # White Gloves Bayesian Optimization, with a happy narrow exploration
 
-   
+    is_unbalance = c(TRUE, FALSE), #
+    extra_trees = c(TRUE, FALSE),
 
     min_gain_to_split = c( 0.1, 10.0 ), # min_gain_to_split >= 0.0
     learning_rate = c( 0.001, 0.3 ),
