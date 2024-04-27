@@ -14,9 +14,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/exp3/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flow3/"
-envg$EXPENV$wf_dir_local <- "~/flow3/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/exp10/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flow10/"
+envg$EXPENV$wf_dir_local <- "~/flow10/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -128,33 +128,33 @@ FE_historia_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
   param_local$meta$script <- "/src/workflow-01/z541_FE_historia.r"
 
   param_local$lag1 <- TRUE
-  param_local$lag2 <- FALSE # no me engraso con los lags de orden 2
+  param_local$lag2 <- TRUE # no me engraso con los lags de orden 2
   param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
 
   # no me engraso las manos con las tendencias
-  param_local$Tendencias1$run <- FALSE  # FALSE, no corre nada de lo que sigue
+  param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
   param_local$Tendencias1$ventana <- 6
   param_local$Tendencias1$tendencia <- TRUE
-  param_local$Tendencias1$minimo <- FALSE
-  param_local$Tendencias1$maximo <- FALSE
-  param_local$Tendencias1$promedio <- FALSE
-  param_local$Tendencias1$ratioavg <- FALSE
-  param_local$Tendencias1$ratiomax <- FALSE
+  param_local$Tendencias1$minimo <- TRUE
+  param_local$Tendencias1$maximo <- TRUE
+  param_local$Tendencias1$promedio <- TRUE
+  param_local$Tendencias1$ratioavg <- TRUE
+  param_local$Tendencias1$ratiomax <- TRUE
 
   # no me engraso las manos con las tendencias de segundo orden
-  param_local$Tendencias2$run <- FALSE
+  param_local$Tendencias2$run <- TRUE
   param_local$Tendencias2$ventana <- 6
   param_local$Tendencias2$tendencia <- TRUE
-  param_local$Tendencias2$minimo <- FALSE
-  param_local$Tendencias2$maximo <- FALSE
-  param_local$Tendencias2$promedio <- FALSE
-  param_local$Tendencias2$ratioavg <- FALSE
-  param_local$Tendencias2$ratiomax <- FALSE
+  param_local$Tendencias2$minimo <- TRUE
+  param_local$Tendencias2$maximo <- TRUE
+  param_local$Tendencias2$promedio <- TRUE
+  param_local$Tendencias2$ratioavg <- TRUE
+  param_local$Tendencias2$ratiomax <- TRUE
 
 
   # No me engraso las manos con las variables nuevas agregadas por un RF
   # esta parte demora mucho tiempo en correr, y estoy en modo manos_limpias
-  param_local$RandomForest$run <- FALSE
+  param_local$RandomForest$run <- TRUE
   param_local$RandomForest$num.trees <- 20
   param_local$RandomForest$max.depth <- 4
   param_local$RandomForest$min.node.size <- 1000
@@ -162,7 +162,7 @@ FE_historia_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
 
   # no me engraso las manos con los Canaritos Asesinos
   # varia de 0.0 a 2.0, si es 0.0 NO se activan
-  param_local$CanaritosAsesinos$ratio <- 0.0
+  param_local$CanaritosAsesinos$ratio <- 1.0
   # desvios estandar de la media, para el cutoff
   param_local$CanaritosAsesinos$desvios <- 4.0
 
@@ -181,16 +181,22 @@ TS_strategy_guantesblancos_202109 <- function( pmyexp, pinputexps, pserver="loca
 
 
   param_local$future <- c(202109)
-  param_local$final_train <- c(202107, 202106, 202105)
+  param_local$final_train <- c(202107, 202106, 
+                                  202105, 202104, 202103, 202102, 202101, 
+    202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202004, 202003, 202002, 202001,
+    201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903 #, 201902, 201901
+    )
 
 
-  param_local$train$training <- c(202105, 202104, 202103)
+  param_local$train$training <- c(202105, 202104, 202103, 202102, 202101, 
+    202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202004, 202003, 202002, 202001,
+    201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903, 201902, 201901)
   param_local$train$validation <- c(202106)
   param_local$train$testing <- c(202107)
 
   # Atencion  0.1  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling ,  0.1  es quedarse con el 10% de los CONTINUA
-  param_local$train$undersampling <- 0.1
+  param_local$train$undersampling <- 0.4
 
   return( exp_correr_script( param_local ) ) # linea fija
 }
@@ -207,16 +213,21 @@ TS_strategy_guantesblancos_202107 <- function( pmyexp, pinputexps, pserver="loca
 
 
   param_local$future <- c(202107)
-  param_local$final_train <- c(202105, 202104, 202103)
+  param_local$final_train <- c(202105, 202104, #Acá pongo los dos considerados en el validation y testing del training
+    202103, 202102, 202101, 
+    202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202004, 202003, 202002, 202001, 
+    201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903) # en esta parte excluyo dos meses para compensar
 
 
-  param_local$train$training <- c(202103, 202102, 202101)
+  param_local$train$training <- c(202103, 202102, 202101, 
+    202012, 202011, 202010, 202009, 202008, 202007, 202006, 202005, 202004, 202003, 202002, 202001, 
+    201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903, 201902, 201901)
   param_local$train$validation <- c(202104)
   param_local$train$testing <- c(202105)
 
   # Atencion  0.1  de  undersampling de la clase mayoritaria,  los CONTINUA
   # 1.0 significa NO undersampling ,  0.1  es quedarse con el 10% de los CONTINUA
-  param_local$train$undersampling <- 0.1
+  param_local$train$undersampling <- 0.4 # elijo quedarme con el 50%, de los CONTINUA, debería ser buena estimación.
 
   return( exp_correr_script( param_local ) ) # linea fija
 }
@@ -262,24 +273,25 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     max_drop = 50, # <=0 means no limit
     skip_drop = 0.5, # 0.0 <= skip_drop <= 1.0
 
-    bagging_fraction = 0.64, # 0.0 < bagging_fraction <= 1.0
-    feature_fraction = 0.59,
-    pos_bagging_fraction = 0.48, # 0.0 < pos_bagging_fraction <= 1.0
-    neg_bagging_fraction = 0.27, # 0.0 < neg_bagging_fraction <= 1.0
     scale_pos_weight = 0.44, # scale_pos_weight > 0.0
-    num_leaves = 237,
+    num_leaves = 250,
+
+    is_unbalance = FALSE, #
+    extra_trees = FALSE,
+
     # White Gloves Bayesian Optimization, with a happy narrow exploration
 
-    is_unbalance = c(TRUE, FALSE), #
-    extra_trees = c(TRUE, FALSE),
-
     min_gain_to_split = c( 0.1, 10.0 ), # min_gain_to_split >= 0.0
-    learning_rate = c( 0.001, 0.3 ),
-    min_data_in_leaf = c( 50L, 1000L, "integer" )   
+    learning_rate = c( 0.001, 0.2 ),
+    min_data_in_leaf = c( 50L, 1000L, "integer" ),   
+    bagging_fraction = c( 0.1, 0.9), # 0.0 < bagging_fraction <= 1.0
+    feature_fraction = c( 0.1, 0.9),
+    pos_bagging_fraction = c( 0.1, 0.9), # 0.0 < pos_bagging_fraction <= 1.0
+    neg_bagging_fraction = c( 0.1, 0.9), # 0.0 < neg_bagging_fraction <= 1.0
   )
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
-  param_local$bo_iteraciones <- 70 # iteraciones de la Optimizacion Bayesiana
+  param_local$bo_iteraciones <- 50 # iteraciones de la Optimizacion Bayesiana
 
   return( exp_correr_script( param_local ) ) # linea fija
 }
