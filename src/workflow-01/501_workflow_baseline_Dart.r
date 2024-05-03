@@ -360,7 +360,7 @@ corrida_guantesblancos_202107 <- function( pnombrewf, pvirgen=FALSE )
 
 # Hago primero esta corrida que me genera los experimentos
 # DT0001, CA0001, DR0001, FE0001, TS0001, HT0001 y ZZ0001
-#corrida_guantesblancos_202109( "gb01" )
+corrida_guantesblancos_202109( "gb01" )
 
 
 # Luego partiendo de  FE0001
