@@ -14,9 +14,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/exp40/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flow40/"
-envg$EXPENV$wf_dir_local <- "~/flow40/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/exp50/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flow50/"
+envg$EXPENV$wf_dir_local <- "~/flow50/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -341,6 +341,14 @@ corrida_guantesblancos_202109 <- function( pnombrewf, pvirgen=FALSE )
 corrida_guantesblancos_202107 <- function( pnombrewf, pvirgen=FALSE )
 {
   if( -1 == exp_wf_init( pnombrewf, pvirgen) ) return(0) # linea fija
+
+  # Agrego las partes que faltan en el código para esta corrida
+
+  DT_incorporar_dataset_default( "DT0001", "competencia_2024.csv.gz")
+  CA_catastrophe_default( "CA0001", "DT0001" )
+
+  DR_drifting_guantesblancos( "DR0001", "CA0001" )
+  FE_historia_guantesblancos( "FE0001", "DR0001" )
 
   # Ya tengo corrido FE0001 y parto de alli
   TS_strategy_guantesblancos_202107( "TS0002", "FE0001" )
