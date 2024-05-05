@@ -252,7 +252,7 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     lambda_l1 = 0.0, # lambda_l1 >= 0.0
     lambda_l2 = 0.0, # lambda_l2 >= 0.0
     max_bin = 31L, # lo debo dejar fijo, no participa de la BO
-    num_iterations = 9999, # un numero muy grande, lo limita early_stopping_rounds
+    num_iterations = 3000, # un numero muy grande, lo limita early_stopping_rounds
 
     bagging_fraction = 1.0, # 0.0 < bagging_fraction <= 1.0
     pos_bagging_fraction = 1.0, # 0.0 < pos_bagging_fraction <= 1.0
@@ -267,7 +267,7 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     extra_trees = FALSE,
     # White Gloves Bayesian Optimization, with a happy narrow exploration
     learning_rate = 0.01,
-    feature_fraction = c( 0.5, 0.9 ),
+    feature_fraction = 0.5,
     num_leaves = c( 8L, 2048L,  "integer" ),
     min_data_in_leaf = c( 100L, 2000L, "integer" ) # IMPORTANTE, ACÁ DEBERÍA SER MENOS DE 100, NOSE XQ LO DEJARON
   )
