@@ -14,9 +14,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/expgbdt/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowgbdt/"
-envg$EXPENV$wf_dir_local <- "~/flowgbdt/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/expRF/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowRF/"
+envg$EXPENV$wf_dir_local <- "~/flowRF/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -238,7 +238,7 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
   #  los que tienen un vector,  son los que participan de la Bayesian Optimization
   
   param_local$lgb_param <- list(
-    boosting = "gbdt", # puede ir  dart  , ni pruebe random_forest # NC: Puse dart para probar
+    boosting = "rf", # puede ir  dart  , ni pruebe random_forest # NC: Puse dart para probar
     objective = "binary",
     metric = "custom",
     first_metric_only = TRUE,
@@ -269,7 +269,7 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     learning_rate = c( 0.01, 0.5 ),
     feature_fraction = c( 0.5, 0.9 ),
     num_leaves = c( 8L, 2048L,  "integer" ),
-    min_data_in_leaf = c( 100L, 2000L, "integer" ) # IMPORTANTE, ACÁ DEBERÍA SER MENOS DE 100, NOSE XQ LO DEJARON
+    min_data_in_leaf = c( 100L, 2000L, "integer" ) # IMPORTANT, IT SHOULD BE LESS THAN 100 HERE, NOT SURE WHY THEY LEFT IT
   )
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
