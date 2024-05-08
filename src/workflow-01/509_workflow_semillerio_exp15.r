@@ -13,9 +13,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/exp15/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flow15/"
-envg$EXPENV$wf_dir_local <- "~/flow15/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/exp15sem/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flow15sem/"
+envg$EXPENV$wf_dir_local <- "~/flow15sem/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -271,10 +271,10 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
 
     # White Gloves Bayesian Optimization, with a happy narrow exploration
 
-    min_gain_to_split = c( 0.1, 10.0 ), # min_gain_to_split >= 0.0
-    feature_fraction = c( 0.3, 0.9 ),
-    min_data_in_leaf = c( 10L, 2000L, "integer" ),   
-    num_leaves = c( 8L, 2048L, "integer" )
+    min_gain_to_split = 0.3, # min_gain_to_split >= 0.0
+    feature_fraction = 0.1,
+    min_data_in_leaf = 3000,   
+    num_leaves = 281
   )
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
@@ -348,18 +348,18 @@ corrida_baseline_semillerio_202109 <- function( pnombrewf, pvirgen=FALSE )
 {
   if( -1 == exp_wf_init( pnombrewf, pvirgen) ) return(0) # linea fija
 
-  DT_incorporar_dataset_baseline( "DT0001", "competencia_2024.csv.gz")
-  CA_catastrophe_baseline( "CA0001", "DT0001" )
+  DT_incorporar_dataset_baseline( "DT0001-sem", "competencia_2024.csv.gz")
+  CA_catastrophe_baseline( "CA0001-sem", "DT0001-sem" )
 
-  DR_drifting_baseline( "DR0001", "CA0001" )
-  FE_historia_baseline( "FE0001", "DR0001" )
+  DR_drifting_baseline( "DR0001-sem", "CA0001-sem" )
+  FE_historia_baseline( "FE0001-sem", "DR0001-sem" )
 
-  TS_strategy_baseline_202109( "TS0001", "FE0001" )
+  TS_strategy_baseline_202109( "TS0001-sem", "FE0001-sem" )
 
-  HT_tuning_baseline( "HT0001", "TS0001" )
+  HT_tuning_baseline( "HT0001-sem", "TS0001-sem" )
 
   # El ZZ depente de HT y TS
-  ZZ_final_semillerio_baseline( "ZZ0001", c("HT0001","TS0001") )
+  ZZ_final_semillerio_baseline( "ZZ0001-sem", c("HT0001-sem","TS0001-sem") )
 
 
   exp_wf_end( pnombrewf, pvirgen ) # linea fija
