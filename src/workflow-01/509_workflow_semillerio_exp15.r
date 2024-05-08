@@ -273,8 +273,8 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
 
     min_gain_to_split = 0.3, # min_gain_to_split >= 0.0
     feature_fraction = 0.1,
-    min_data_in_leaf = 3000,   
-    num_leaves = 281
+    min_data_in_leaf = 3000L,    # nolint
+    num_leaves = 281L
   )
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
