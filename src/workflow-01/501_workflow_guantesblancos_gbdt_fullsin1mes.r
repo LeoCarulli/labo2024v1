@@ -14,9 +14,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/exp60/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flow60/"
-envg$EXPENV$wf_dir_local <- "~/flow60/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/exp65/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flow65/"
+envg$EXPENV$wf_dir_local <- "~/flow65/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -295,11 +295,11 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
     is_unbalance = FALSE, #
     extra_trees = FALSE,
     learning_rate = 0.01, # Sugerencia del profe, y mis experimentos dieron también usar este learning rate
+    min_gain_to_split = 1.0, # min_gain_to_split >= 0.0 -- Bayesiana me da este resultado
+    feature_fraction = 0.1,
 
     # White Gloves Bayesian Optimization, with a happy narrow exploration
 
-    min_gain_to_split = c( 0.1, 20.0 ), # min_gain_to_split >= 0.0
-    feature_fraction = c( 0.1, 0.7 ),
     min_data_in_leaf = c( 10L, 4000L, "integer" ),   
     num_leaves = c( 8L, 2048L, "integer" )
   )
@@ -398,6 +398,6 @@ corrida_guantesblancos_202109( "gb01" )
 # Luego partiendo de  FE0001
 # genero TS0002, HT0002 y ZZ0002
 
-corrida_guantesblancos_202107( "gb02" )
+#corrida_guantesblancos_202107( "gb02" )
 
  
