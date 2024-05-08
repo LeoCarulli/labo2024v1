@@ -348,18 +348,18 @@ corrida_baseline_semillerio_202109 <- function( pnombrewf, pvirgen=FALSE )
 {
   if( -1 == exp_wf_init( pnombrewf, pvirgen) ) return(0) # linea fija
 
-  DT_incorporar_dataset_baseline( "DT0001-sem", "competencia_2024.csv.gz")
-  CA_catastrophe_baseline( "CA0001-sem", "DT0001-sem" )
+  DT_incorporar_dataset_baseline( "DT0001", "competencia_2024.csv.gz")
+  CA_catastrophe_baseline( "CA0001", "DT0001" )
 
-  DR_drifting_baseline( "DR0001-sem", "CA0001-sem" )
-  FE_historia_baseline( "FE0001-sem", "DR0001-sem" )
+  DR_drifting_baseline( "DR0001", "CA0001" )
+  FE_historia_baseline( "FE0001", "DR0001" )
 
-  TS_strategy_baseline_202109( "TS0001-sem", "FE0001-sem" )
+  TS_strategy_baseline_202109( "TS0001", "FE0001" )
 
-  HT_tuning_baseline( "HT0001-sem", "TS0001-sem" )
+  HT_tuning_baseline( "HT0001", "TS0001" )
 
   # El ZZ depente de HT y TS
-  ZZ_final_semillerio_baseline( "ZZ0001-sem", c("HT0001-sem","TS0001-sem") )
+  ZZ_final_semillerio_baseline( "ZZ0001", c("HT0001","TS0001") )
 
 
   exp_wf_end( pnombrewf, pvirgen ) # linea fija
