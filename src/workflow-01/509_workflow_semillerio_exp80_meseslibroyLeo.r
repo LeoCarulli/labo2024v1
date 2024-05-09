@@ -161,25 +161,27 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
 
 
   param_local$future <- c(202109)
-  param_local$final_train <- c(202107, 202106, 
-                                  202105, 202104, 202103, 202102, 202101, 
-    202012, 202011, 202010, 202009, 202008, 202007, # 202006 - Excluyo este mes con variables rotas
-    #202005, 202004, 202003, - Excluyo estos meses de pandemia 
-    202002, 202001,
-    201912, 201911, # 201910, - Excluyo este mes con variables rotas
-    201909, 201908, 201907, 201906, # 201905, - Excluyo este mes con variables rotas
-    #201904, 201903 #, 201902, 201901 - Excluyo estos meses para tener misma cantidad que en el training
-    )
+  param_local$final_train <- c(
+      202107, 202106,
+      202105, 202104, 202103, 202102, 202101,
+      202012, 202011, 202010, 202009, 202008, 202007, # 202006 - Excluyo este mes con variables rotas
+      # 202005, 202004, 202003, - Excluyo estos meses de pandemia
+      202002, 202001,
+      201912, 201911, # 201910, - Excluyo este mes con variables rotas
+      201909, 201908, 201907, 201906#, 201905, - Excluyo este mes con variables rotas
+      # 201904, 201903 #, 201902, 201901 - Excluyo estos meses para tener misma cantidad que en el training
+  )
 
 
-  param_local$train$training <- c(202105, 202104, 202103, 202102, 202101, 
-    202012, 202011, 202010, 202009, 202008, 202007, # 202006 - Excluyo este mes con variables rotas
-    #202005, 202004, 202003, - Excluyo estos meses de pandemia 
-    202002, 202001,
-    201912, 201911, # 201910, - Excluyo este mes con variables rotas
-    201909, 201908, 201907, 201906, # 201905, # - Excluyo este mes con variables rotas
-    201904, 201903,# 201902, 201901 # Incluyo estos 2 ultimos meses que no aplican arriba
-    )
+  param_local$train$training <- c(
+      202105, 202104, 202103, 202102, 202101,
+      202012, 202011, 202010, 202009, 202008, 202007, # 202006 - Excluyo este mes con variables rotas
+      # 202005, 202004, 202003, - Excluyo estos meses de pandemia
+      202002, 202001,
+      201912, 201911, # 201910, - Excluyo este mes con variables rotas
+      201909, 201908, 201907, 201906, # 201905, # - Excluyo este mes con variables rotas
+      201904, 201903#, 201902, 201901 # Incluyo estos 2 ultimos meses que no aplican arriba
+  )
   param_local$train$validation <- c(202106)
   param_local$train$testing <- c(202107)
 
@@ -202,19 +204,21 @@ TS_strategy_baseline_202107 <- function( pmyexp, pinputexps, pserver="local")
   param_local$final_train <- c(202105, 202104, # Acá pongo los dos considerados en el validation y testing del training
     202103, 202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, # 202006
-    202005, 202004, 202003, 202002, 202001, 
-    201912, 201911, 201910, 
+    #202005, 202004, 202003, 
+    202002, 202001, 
+    201912, 201911, #201910, 
     201909, 201908, 201907, 201906, 201905, 
-    201904, 201903
+    201904#, 201903, 201902
     ) # en esta parte excluyo dos meses para compensar
 
 
   param_local$train$training <- c(202103, 202102, 202101, 
     202012, 202011, 202010, 202009, 202008, 202007, #202006,
-    202005, 202004, 202003, 202002, 202001, 
-    201912, 201911, 201910, 
+    #202005, 202004, 202003, 
+    202002, 202001, 
+    201912, 201911, #201910, 
     201909, 201908, 201907, 201906, 201905, 
-    201904, 201903, 201902, 201901 # Incluyo dos adicionales para compensar
+    201904, 201903, 201902#, 201901 # Incluyo dos adicionales para compensar
     )
   param_local$train$validation <- c(202104)
   param_local$train$testing <- c(202105)
