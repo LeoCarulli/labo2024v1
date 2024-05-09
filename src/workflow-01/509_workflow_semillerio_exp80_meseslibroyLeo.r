@@ -269,7 +269,7 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
 
     extra_trees = FALSE,
     # Quasi  baseline, el minimo learning_rate es 0.02 !!
-    learning_rate = c( 0.01, 0.3 ),
+    learning_rate = c( 0.02, 0.3 ),
     feature_fraction = c( 0.3, 0.9 ),
     num_leaves = c( 8L, 2048L,  "integer" ),
     min_data_in_leaf = c( 10L, 10000L, "integer" )
