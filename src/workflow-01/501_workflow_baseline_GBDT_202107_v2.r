@@ -14,9 +14,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/expRF2/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowRF2/"
-envg$EXPENV$wf_dir_local <- "~/flowRF2/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/expgbdt2/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowgbdt2/"
+envg$EXPENV$wf_dir_local <- "~/flowgbdt2/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -238,7 +238,7 @@ HT_tuning_guantesblancos <- function( pmyexp, pinputexps, pserver="local")
   #  los que tienen un vector,  son los que participan de la Bayesian Optimization
   
   param_local$lgb_param <- list(
-    boosting = "rf", # puede ir  dart  , ni pruebe random_forest # NC: Puse dart para probar
+    boosting = "gbdt", # puede ir  dart  , ni pruebe random_forest # NC: Puse dart para probar
     objective = "binary",
     metric = "custom",
     first_metric_only = TRUE,
