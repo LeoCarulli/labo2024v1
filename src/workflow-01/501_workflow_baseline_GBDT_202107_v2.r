@@ -351,7 +351,7 @@ corrida_guantesblancos_202107 <- function( pnombrewf, pvirgen=FALSE )
   FE_historia_guantesblancos( "FE0002", "DR0002" )
 
   # Ya tengo corrido FE0001 y parto de alli
-  TS_strategy_guantesblancos_202107( "TS0002", "FE0001" )
+  TS_strategy_guantesblancos_202107( "TS0002", "FE0002" )
 
   HT_tuning_guantesblancos( "HT0002", "TS0002" )
 
