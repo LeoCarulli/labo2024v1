@@ -344,14 +344,14 @@ corrida_guantesblancos_202107 <- function( pnombrewf, pvirgen=FALSE )
 
   # Agrego las partes que faltan en el código para esta corrida
 
-  DT_incorporar_dataset_default( "DT0001", "competencia_2024.csv.gz")
-  CA_catastrophe_default( "CA0001", "DT0001" )
+  DT_incorporar_dataset_default( "DT0002", "competencia_2024.csv.gz")
+  CA_catastrophe_default( "CA0002", "DT0002" )
 
-  DR_drifting_guantesblancos( "DR0001", "CA0001" )
-  FE_historia_guantesblancos( "FE0001", "DR0001" )
+  DR_drifting_guantesblancos( "DR0002", "CA0002" )
+  FE_historia_guantesblancos( "FE0002", "DR0002" )
 
   # Ya tengo corrido FE0001 y parto de alli
-  TS_strategy_guantesblancos_202107( "TS0002", "FE0001" )
+  TS_strategy_guantesblancos_202107( "TS0002", "FE0002" )
 
   HT_tuning_guantesblancos( "HT0002", "TS0002" )
 
