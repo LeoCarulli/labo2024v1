@@ -166,7 +166,7 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
   param_local$final_train <- c(
       202107, 202106,
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, 202007, 
+      202012, 202011, 202010, 202009, 202008, #202007, 
       #202006 - Excluyo este mes con variables rotas
       #202005, 202004, 202003, - Excluyo estos meses de pandemia
       #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
@@ -178,7 +178,7 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
 
   param_local$train$training <- c(
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, 202007, 
+      202012, 202011, 202010, 202009, 202008, #202007, 
       #202006 - Excluyo este mes con variables rotas
       #202005, 202004, 202003, - Excluyo estos meses de pandemia
       #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
