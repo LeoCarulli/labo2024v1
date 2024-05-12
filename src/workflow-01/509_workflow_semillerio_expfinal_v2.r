@@ -13,9 +13,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/expfinal/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowfinal/"
-envg$EXPENV$wf_dir_local <- "~/flowfinal/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/expfinal2/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowfinal2/"
+envg$EXPENV$wf_dir_local <- "~/flowfinal2/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
@@ -114,28 +114,28 @@ FE_historia_baseline <- function( pmyexp, pinputexps, pserver="local")
   param_local$meta$script <- "/src/workflow-01/z541_FE_historia.r"
 
   param_local$lag1 <- TRUE
-  param_local$lag2 <- TRUE # no me engraso con los lags de orden 2
+  param_local$lag2 <- FALSE # no me engraso con los lags de orden 2
   param_local$lag3 <- FALSE # no me engraso con los lags de orden 3
 
   # baseline
   param_local$Tendencias1$run <- TRUE  # FALSE, no corre nada de lo que sigue
   param_local$Tendencias1$ventana <- 6
   param_local$Tendencias1$tendencia <- TRUE
-  param_local$Tendencias1$minimo <- FALSE
-  param_local$Tendencias1$maximo <- FALSE
-  param_local$Tendencias1$promedio <- FALSE
-  param_local$Tendencias1$ratioavg <- FALSE
-  param_local$Tendencias1$ratiomax <- FALSE
+  param_local$Tendencias1$minimo <- TRUE
+  param_local$Tendencias1$maximo <- TRUE
+  param_local$Tendencias1$promedio <- TRUE
+  param_local$Tendencias1$ratioavg <- TRUE
+  param_local$Tendencias1$ratiomax <- TRUE
 
   # baseline
   param_local$Tendencias2$run <- TRUE
   param_local$Tendencias2$ventana <- 6
   param_local$Tendencias2$tendencia <- TRUE
-  param_local$Tendencias2$minimo <- FALSE
-  param_local$Tendencias2$maximo <- FALSE
-  param_local$Tendencias2$promedio <- FALSE
-  param_local$Tendencias2$ratioavg <- FALSE
-  param_local$Tendencias2$ratiomax <- FALSE
+  param_local$Tendencias2$minimo <- TRUE
+  param_local$Tendencias2$maximo <- TRUE
+  param_local$Tendencias2$promedio <- TRUE
+  param_local$Tendencias2$ratioavg <- TRUE
+  param_local$Tendencias2$ratiomax <- TRUE
 
 
   # vaseline
@@ -166,24 +166,26 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
   param_local$final_train <- c(
       202107, 202106,
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, #202007, 
+      202012, 202011, 202010, 202009, 202008, 202007, 
       #202006 - Excluyo este mes con variables rotas
-      #202005, 202004, 202003, - Excluyo estos meses de pandemia
+      202005,#202004, 202003, - Excluyo estos meses de pandemia
       #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
       202001,
-      201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903 
+      201912, 201911, #201910, - Excluyo por tener muchas variables rotas.
+      201909, 201908, 201907, 201906, 201905, 201904, 201903 
       #, 201902, 201901 - Excluyo estos meses para tener misma cantidad que en el training
   )
 
 
   param_local$train$training <- c(
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, #202007, 
+      202012, 202011, 202010, 202009, 202008, 202007, 
       #202006 - Excluyo este mes con variables rotas
-      #202005, 202004, 202003, - Excluyo estos meses de pandemia
+      202005,#202004, 202003, - Excluyo estos meses de pandemia
       #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
       202001,
-      201912, 201911, 201910, 201909, 201908, 201907, 201906, 201905, 201904, 201903, 
+      201912, 201911, #201910, - Excluyo por tener muchas variables rotas.
+      201909, 201908, 201907, 201906, 201905, 201904, 201903, 
       201902, 201901 # Incluyo estos 2 ultimos meses que no aplican arriba
   )
   param_local$train$validation <- c(202106)
@@ -258,7 +260,7 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
     force_row_wise = TRUE, # para reducir warnings
     verbosity = -100,
     max_depth = -1L, # -1 significa no limitar,  por ahora lo dejo fijo
-    min_gain_to_split = 0.0, # min_gain_to_split >= 0.0
+    
     min_sum_hessian_in_leaf = 0.001, #  min_sum_hessian_in_leaf >= 0.0
     lambda_l1 = 0.0, # lambda_l1 >= 0.0
     lambda_l2 = 0.0, # lambda_l2 >= 0.0
@@ -277,15 +279,16 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
 
     extra_trees = FALSE,
     # Quasi  baseline, el minimo learning_rate es 0.02 !!
-    learning_rate = c( 0.02, 0.3 ),
-    feature_fraction = c( 0.2, 0.8 ),
+    learning_rate = 0.02,
+    min_gain_to_split = c( 1L, 100L,  "integer" ), # min_gain_to_split >= 0.0
+    feature_fraction = c( 0.1, 0.8 ),
     num_leaves = c( 8L, 2048L,  "integer" ),
     min_data_in_leaf = c( 10L, 10000L, "integer" )
   )
 
 
   # una Beyesian de Guantes Blancos, solo hace 15 iteraciones
-  param_local$bo_iteraciones <- 150 # iteraciones de la Optimizacion Bayesiana
+  param_local$bo_iteraciones <- 100 # iteraciones de la Optimizacion Bayesiana
 
   return( exp_correr_script( param_local ) ) # linea fija
 }
@@ -338,7 +341,7 @@ ZZ_final_semillerio_baseline <- function( pmyexp, pinputexps, pserver="local")
 
   # El parametro fundamental de semillerio
   # Es la cantidad de LightGBM's que ensamblo
-  param_local$semillerio <- 100
+  param_local$semillerio <- 50
 
   return( exp_correr_script( param_local ) ) # linea fija
 }
