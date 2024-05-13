@@ -166,10 +166,10 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
   param_local$final_train <- c(
       202107, 202106,
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, 202007, 
+      202012, 202011, #202010, 202009, 202008, 202007, 
       #202006 - Excluyo este mes con variables rotas
-      202005, 202004, 202003, #- Excluyo estos meses de pandemia
-      202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
+      #202005, 202004, 202003, #- Excluyo estos meses de pandemia
+      #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
       202001,
       201912, 201911, 201910, # - Excluyo por tener muchas variables rotas.
       201909, 201908, 201907, 201906, 201905, 201904, 201903 
@@ -179,10 +179,10 @@ TS_strategy_baseline_202109 <- function( pmyexp, pinputexps, pserver="local")
 
   param_local$train$training <- c(
       202105, 202104, 202103, 202102, 202101,
-      202012, 202011, 202010, 202009, 202008, 202007, 
+      202012, 202011, #202010, 202009, 202008, 202007, 
       #202006 - Excluyo este mes con variables rotas
-      202005, 202004, 202003, # - Excluyo estos meses de pandemia
-      202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
+      #202005, 202004, 202003, # - Excluyo estos meses de pandemia
+      #202002, # Este mes lo excluyo por no tener Baja+2. No es correcto para precedir por la pandemia seguramente. Mucha incertidumbre. No va a servir para entrenar.
       202001,
       201912, 201911, 201910, # - Excluyo por tener muchas variables rotas.
       201909, 201908, 201907, 201906, 201905, 201904, 201903, 
