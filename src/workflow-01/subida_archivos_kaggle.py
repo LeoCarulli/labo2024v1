@@ -15,5 +15,5 @@ archivos = os.listdir(carpeta_archivos)
 for archivo in archivos:
     ruta_completa = os.path.join(carpeta_archivos, archivo)
     # Subir archivo a la competencia
-    api.competition_submit(ruta_completa, "Exp Final Versión 2 - semillerío", competition="labo-i-2024-virtual")
+    api.competition_submit(ruta_completa, "Exp Final Versión 2 - semillerío, 10500 a 14000 envíos", competition="labo-i-2024-virtual")
     print(f"Archivo '{archivo}' subido con éxito.")
