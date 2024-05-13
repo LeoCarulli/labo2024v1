@@ -13,9 +13,9 @@ require("ParamHelpers")
 envg <- env()
 
 envg$EXPENV <- list()
-envg$EXPENV$exp_dir <- "~/buckets/b1/expultimo/"
-envg$EXPENV$wf_dir <- "~/buckets/b1/flowultimo/"
-envg$EXPENV$wf_dir_local <- "~/flowultimo/"
+envg$EXPENV$exp_dir <- "~/buckets/b1/explast/"
+envg$EXPENV$wf_dir <- "~/buckets/b1/flowlast/"
+envg$EXPENV$wf_dir_local <- "~/flowlast/"
 envg$EXPENV$repo_dir <- "~/labo2024v1/"
 envg$EXPENV$datasets_dir <- "~/buckets/b1/datasets/"
 envg$EXPENV$arch_sem <- "mis_semillas.txt"
